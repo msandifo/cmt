@@ -1,9 +1,18 @@
 
+#' set_cmt_sys sets a lcoal directory for the 
+#'
+#' @param dir defaults to "~/data/global/quakes/cmt17/" recursively genartes this if not in existence
+#'
+#' @return
+#' @export
+#'
+#' @examples
 set_cmt_sys <- function(dir="~/data/global/quakes/cmt17/") {
 
   if (!dir.exists(dir)) dir.create(dir, recursive=T)
   message ("setting R_CMT_HOME to: ", dir)
   Sys.setenv(R_CMT_HOME = dir )  #
+  
 
 
 }
@@ -11,6 +20,14 @@ set_cmt_sys <- function(dir="~/data/global/quakes/cmt17/") {
 
 
 
+#' updates the R_CMT_HOME with latest files 
+#'
+#' @return
+#' @export
+#'
+#' calls the bashe script "bash/update_cmt.bash"
+#' 
+#' @examples
 update_cmt <- function() {
   if (Sys.getenv("R_CMT_HOME")=="")  set_cmt_sys()
  # system(paste0(  Sys.getenv("R_CMT_HOME"), "ndk/scripts/update_cmt.sh") )
@@ -18,11 +35,23 @@ update_cmt <- function() {
  # system.file('scripts/peak_mem.sh', package='clustertools')
 }
 
+#' Title
+#'
+#' @return
+#' @export
+#' invokes the bash script bash/ndk2fwf.bash"
+#' @examples
 ndk2fwf <- function(){
   system2(system.file( "bash/ndk2fwf.bash", package='cmt'))
 
 }
 
+#' builds  the 
+#'
+#' @return
+#' @export
+#'
+#' @examples
 cmt2rds <- function() {
   library(magrittr)
   if (Sys.getenv("R_CMT_HOME")=="")  set_cmt_sys()
