@@ -7,18 +7,34 @@
 #' @export
 #'
 #' @examples
-set_cmt_sys <- function(dir="~/data/global/quakes/cmt17/") {
-
-  if (!dir.exists(dir)) dir.create(dir, recursive=T)
-  message ("setting R_CMT_HOME to: ", dir)
-  Sys.setenv(R_CMT_HOME = dir )  #
+set_cmt_sys <- function(dir=NA) {
+  con <- file(paste0(system.file("", package="cmt"), "bash/.cmtdir"), open="r+")
   
-
-
+ if (!is.na(dir)) {
+   if( stringr::str_sub(dir, -1) !="/") dir= paste0(dir, "/")
+   writeChar( dir, con , 
+                             nchars= stringr::str_length(dir), eos=NULL)
+ }
+  #readChar("./inst/bash/.cmtdir", n=300)
+  dir <- readChar(con, n=300)
+  dir.ndk <- paste0(dir, "ndk")
+  if (!dir.exists(dir.ndk)) dir.create(dir.ndk, recursive=T)
+  message ("setting R_CMT_HOME to: ", dir)
+  Sys.setenv(R_CMT_HOME = dir )  
+  close(con)
 }
 
 
-
+#' Title
+#'
+#' @return
+#' @export
+#' invokes the bash script bash/ndk2fwf.bash"
+#' @examples
+ndk2fwf <- function(){
+  system2(system.file( "bash/ndk2fwf.bash", package='cmt'), args=Sys.getenv("R_CMT_HOME"))
+  
+}
 
 #' updates the R_CMT_HOME with latest files 
 #'
@@ -31,20 +47,13 @@ set_cmt_sys <- function(dir="~/data/global/quakes/cmt17/") {
 update_cmt <- function() {
   if (Sys.getenv("R_CMT_HOME")=="")  set_cmt_sys()
  # system(paste0(  Sys.getenv("R_CMT_HOME"), "ndk/scripts/update_cmt.sh") )
-  system2(system.file( "bash/update_cmt.bash", package='cmt'))
+  sh.com <- paste("bash/update_cmt.bash "  , Sys.getenv("R_CMT_HOME"))
+  system2(system.file("bash/update_cmt.bash", package='cmt'), args=Sys.getenv("R_CMT_HOME"))
  # system.file('scripts/peak_mem.sh', package='clustertools')
+  ndk2fwf()
 }
 
-#' Title
-#'
-#' @return
-#' @export
-#' invokes the bash script bash/ndk2fwf.bash"
-#' @examples
-ndk2fwf <- function(){
-  system2(system.file( "bash/ndk2fwf.bash", package='cmt'))
 
-}
 
 #' builds  the cmt tibble
 #'
@@ -134,7 +143,7 @@ cmt2rds <- function() {
 
 
 
-  cmtrecord <-readr::read_fwf(paste0(Sys.getenv("R_CMT_HOME"),"ndk/tmpc.ndkj"), col_positions = cpos)    %>%
+  cmtrecord <-readr::read_fwf(paste0(Sys.getenv("R_CMT_HOME"),"tmpc.ndkj"), col_positions = cpos)    %>%
     tibble::as_tibble()
   cmtrecord$Mw<-2/3*log10(cmtrecord$scalarMoment*10^cmtrecord$exponent)-10.7
   cmtrecord$date <- lubridate::ymd_hms(paste(cmtrecord$date ))
@@ -150,7 +159,7 @@ cmt2rds <- function() {
   #         file=paste0(system.file("", package="cmt"), "data/cmt.RData"))
 
 
-  cmtrecord <-readr::read_fwf(paste0(Sys.getenv("R_CMT_HOME"),"ndk/tmpq.ndkj"), col_positions = cpos)    %>%
+  cmtrecord <-readr::read_fwf(paste0(Sys.getenv("R_CMT_HOME"),"tmpq.ndkj"), col_positions = cpos)    %>%
     tibble::as_tibble()
   cmtrecord$Mw<-2/3*log10(cmtrecord$scalarMoment*10^cmtrecord$exponent)-10.7
   cmtrecord$date <- lubridate::ymd_hms(paste(cmtrecord$date ))

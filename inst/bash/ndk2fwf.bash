@@ -1,11 +1,11 @@
 #!/usr/local/bin/bash
 
-cmtDir=/Users/msandifo/data/global/quakes/cmt17/ndk
+#cmtDir=/Users/msandifo/data/global/quakes/cmt17/ndk
 
-pushd $cmtDir
+pushd $1/ndk
 
-cat $cmtDir/jan76_dec17.ndk  $cmtDir/2018/*18.ndk |	sed '$!N;$!N;$!N;$!N;s/\n/ /g'  > $cmtDir/tmpc.ndkj
+cat ./jan76_dec17.ndk  ./2018/*18.ndk |	sed '$!N;$!N;$!N;$!N;s/\n/ /g'  > ../tmpc.ndkj
 
-cat $cmtDir/qcmt.ndk  |	sed '$!N;$!N;$!N;$!N;s/\n/ /g'  > $cmtDir/tmpq.ndkj
+cat ./qcmt.ndk  |	sed '$!N;$!N;$!N;$!N;s/\n/ /g'  > ../tmpq.ndkj
 
 popd

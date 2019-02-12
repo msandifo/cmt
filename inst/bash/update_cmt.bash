@@ -1,14 +1,14 @@
-#!/usr/local/bin/bash
+#/usr/local/bin/bash
 
-cmtDir=~/data/global/quakes/cmt17/ndk
+#cmtDir=~/data/global/quakes/cmt17/ndk
 
-pushd $cmtDir
+pushd $1/ndk #cmtDir
 
 # if full download required
 
-if [ ! -f ./jan76_dec17.ndk ]; then
+if [ ! -f jan76_dec17.ndk ]; then
     echo jan76_dec17.ndk "File not found!"
-    wget https://www.ldeo.columbia.edu/~gcmt/projects/CMT/catalog/jan76_dec17.ndk
+    wget -q https://www.ldeo.columbia.edu/~gcmt/projects/CMT/catalog/jan76_dec17.ndk
 fi
 
 # wget https://www.ldeo.columbia.edu/~gcmt/projects/CMT/catalog/jan76_dec17.ndk
