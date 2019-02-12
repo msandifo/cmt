@@ -46,7 +46,7 @@ ndk2fwf <- function(){
 
 }
 
-#' builds  the 
+#' builds  the cmt tibble
 #'
 #' @return
 #' @export
@@ -178,18 +178,48 @@ read_cmtRDS<- function(quick=F){
 ##--------
 
 
+#'  filter by geographic region name in regex
+#'
+#' @param data defaults to "TIMOR|BANDA|INDONE"
+#' @param f 
+#' @param quick 
+#'
+#' @return
+#' @export
+#'
+#' @examples
 filter_region <- function(data =NA, f="TIMOR|BANDA|INDONE", quick=F) {
   if (is.na(data)) read_cmtRDS(quick=quick)$data %>% dplyr::filter(  grepl(f,region)) else
     data %>% dplyr::filter(  grepl(f,region))
 
 }
 
+#' filter by mw
+#'
+#' @param f defult f=7
+#' @param data  default=NA in whcihc ase cmt.RDS of qmt.RDS is read
+#' @param quick  dafault=F, set to TRUE if quick cmt is requird.
+#'
+#' @return filter cmt tibble
+#' @export
+#'
+#' @examples
 filter_mw <- function(f=7, data =NA, quick=F) {
   if (is.na(data)) read_cmtRDS(quick=quick)$data %>% dplyr::filter(  Mw>=f) else
     data %>% dplyr::filter(  Mw>=f)
 
 }
 
+#' filter by depth
+#'
+#' @param f default c(),300)
+#' @param data  default=NA in which case cmt.RDS of qmt.RDS is read
+#' @param quick  dafault=F, set to TRUE if quick cmt is requird.
+#'
+#' @return filter cmt tibble
+#' @export
+#'
+#' @examples
 filter_depth <- function(f=c(0,300), data = NA,  quick=F) {
   if (length(f)==1) f= c(f, 1000.)
   print(f)
