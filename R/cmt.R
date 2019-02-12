@@ -177,6 +177,14 @@ cmt2rds <- function() {
 
 }
 
+#' read .RDS file in cmt package
+#'
+#' @param quick (default= FALSE) set to TRUE to read quick cmt RDS
+#'
+#' @return list of 2,  data (class tibble)  and date (class Date)
+#' @export
+#'
+#' @examples
 read_cmtRDS<- function(quick=F){
   # if (Sys.getenv("R_CMT_HOME")=="")  set_cmt_sys()
   # if (quick ==T) readRDS( file=paste0(Sys.getenv("R_CMT_HOME"),"qcmt.RDS"))  else readRDS(file=paste0(Sys.getenv("R_CMT_HOME"),"cmt.RDS"))
@@ -241,6 +249,16 @@ filter_depth <- function(f=c(0,300), data = NA,  quick=F) {
 
 }
 
+#' filter by long range 
+#'
+#' @param f  (default c(100,160))
+#' @param data (default = NA) will call read_cmtRDS
+#' @param quick 
+#'
+#' @return
+#' @export
+#'
+#' @examples
 filter_long <- function(f=c(100,160),data = NA,  quick=F) {
   if (length(f)==1) f= c(f, 180)
   print(f)
@@ -249,6 +267,16 @@ filter_long <- function(f=c(100,160),data = NA,  quick=F) {
 
 }
 
+#' filter by lat range 
+#'
+#' @param f  (default c(-25,10))
+#' @param data (default = NA) will call read_cmtRDS
+#' @param quick 
+#'
+#' @return
+#' @export
+#'
+#' @examples
 filter_lat <- function(f=c(-25,10),data = NA,  quick=F) {
   if (length(f)==1) f= c(f, 90)
   print(f)
@@ -257,11 +285,30 @@ filter_lat <- function(f=c(-25,10),data = NA,  quick=F) {
 
 }
 
+#' returns min and max of nuemric vector expanded by amount
+#'
+#' @param data 
+#' @param tight (default=0)   factor in percentage terms to expand range
+#'
+#' @return
+#' @export
+#'
+#' @examples
 minmax <- function(data,  tight=0){
   range <- c(min(data), max(data))
   range + (c(-1,1 )*diff(range)*(tight/100))
 }
 
+#' default plot 
+#'
+#' @param data 
+#' @param tight 
+#' @param projection 
+#'
+#' @return
+#' @export
+#'
+#' @examples
 plot_cmt <- function(data, tight=NA, projection="mollweide") {
   library(ggplot2)
   world <- map_data("world")
@@ -274,11 +321,12 @@ plot_cmt <- function(data, tight=NA, projection="mollweide") {
     lat.range=minmax(-90,90)
   }
   ggplot(data, aes(long, lat)) +
-   geom_path(data=world, aes( group = group), fill="grey")+
+    geom_polygon(data=world, aes( group = group), fill="grey85", col="grey70")+
+    #geom_path(data=world, aes( group = group), fill="grey")+
      geom_point(aes( size=Mw,  col=depth))+
-    xlim(long.range)+
-    ylim(lat.range)+
-    coord_map(projection=projection)
+    scale_colour_gradientn(colours=plunge.cols )+
+    coord_map(projection=projection, xlim=long.range, ylim=lat.range)
+  
 }
 
 

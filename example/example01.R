@@ -14,7 +14,7 @@ filter_long(c(143,155)) %>%
   data;
 
 data %>% cmt_to_ppp() %>%
-  vec_lines(  scale=0.4,  segment=T, norm=T, ax="P")  ->
+  vec_lines(  scale=0.3,  segment=T, norm=T, ax="P")  ->
   dat.ll
 dat<- cbind(data, dat.ll)
 ldat<-length(dat$lat);
@@ -52,7 +52,7 @@ filter_long(c(123,147)) %>%
   data;
 
 data %>% cmt_to_ppp() %>%
-  vec_lines(  scale=1.5,  segment=T, norm=T, ax="P")  ->
+  vec_lines(  scale=1.,  segment=T, norm=T, ax="T")  ->
   dat.ll
 dat<- cbind(data, dat.ll)
 ldat<-length(dat$lat);
@@ -68,9 +68,9 @@ ggplot(dat, aes(long, lat)) +
   scale_size(range=c(.3,4) )+
   # geom_segment(data=dat.ll, aes(x=x,xend=xend ,y=y,yend=yend), colour="white", lwd=1.15 , lineend="round" ,arrow = arrow(length = unit(0.01, "npc")))+
   geom_segment(  aes(x=x,xend=xend ,y=y,yend=yend), colour="black", lwd=.75 , lineend="round" ,arrow = arrow(length = unit(0.01, "npc")))+
-  geom_segment(  aes(x=x,xend=xend ,y=y,yend=yend, colour=depth), lwd=.65 , lineend="round" ,arrow = arrow(length = unit(0.01, "npc")))+
+  geom_segment(  aes(x=x,xend=xend ,y=y,yend=yend, colour=plunge), lwd=.65 , lineend="round" ,arrow = arrow(length = unit(0.01, "npc")))+
   scale_colour_gradientn(colours=plunge.cols )+
-  # ggnewscale::new_scale_color() +
+   ggnewscale::new_scale_color() +
   geom_point( colour="white", aes(size=Mw))+
   geom_point( aes(colour=depth,size=Mw*.85))+
   scale_colour_gradientn(colours=plunge.cols )+
