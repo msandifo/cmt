@@ -3,7 +3,11 @@ title: "CMT package notes"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
+<<<<<<< HEAD
   %\VignetteIndexEntry{CMT package notes}
+=======
+  %\VignetteIndexEntry{cmtPackage.Rmd}
+>>>>>>> b291dc18a5aa96a1a6a16a0cc11d77181ef488aa
   \usepackage[utf8]{inputenc}
 ---
 ```{r setup, include=FALSE}
