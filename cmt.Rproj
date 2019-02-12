@@ -15,16 +15,3 @@ LaTeX: pdfLaTeX
 BuildType: Package
 PackageUseDevtools: Yes
 PackageInstallArgs: --no-multiarch --with-keep.source
-<<<<<<< HEAD
-<<<<<<< HEAD
-PackageRoxygenize: rd,collate,namespace
-=======
-<<<<<<< HEAD
-=======
-=======
->>>>>>> refs/remotes/origin/master
->>>>>>> 7363a76a078ee0c9dadbb4dd5b3b3a200f1ae74b
->>>>>>> 81fa4946ad79aefa656bc5208a1071473fdcdbcf
-=======
-PackageRoxygenize: rd,collate,namespace
->>>>>>> 6858c59583d1b560b7b799ff0be4638ec714841c
