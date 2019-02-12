@@ -1,4 +1,4 @@
-library(slab)
+#library(slab)
 
 is.ras <- function(ras) {
   class(ras)[1] %in% c("Raster", "RasterLayer", "RasterBrick", "RasterStack")
