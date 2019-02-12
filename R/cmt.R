@@ -8,7 +8,9 @@
 #'
 #' @examples
 set_cmt_sys <- function(dir=NA) {
-  con <- file(paste0(system.file("", package="cmt"), "bash/.cmtdir"), open="r+")
+  
+  con <- file(system.file( file.path("bash",".cmtdir", fsep = .Platform$file.sep), package='cmt'), open="r+")
+ #con <- file(paste0(system.file("", package="cmt"), "bash/.cmtdir"), open="r+")
   
  if (!is.na(dir)) {
    if( stringr::str_sub(dir, -1) !="/") dir= paste0(dir, "/")
@@ -32,7 +34,8 @@ set_cmt_sys <- function(dir=NA) {
 #' invokes the bash script bash/ndk2fwf.bash"
 #' @examples
 ndk2fwf <- function(){
-  system2(system.file( "bash/ndk2fwf.bash", package='cmt'), args=Sys.getenv("R_CMT_HOME"))
+  system2(system.file( file.path("bash","ndk2fwf.bash", fsep = .Platform$file.sep), package='cmt'), 
+          args=Sys.getenv("R_CMT_HOME"))
   
 }
 
@@ -46,9 +49,10 @@ ndk2fwf <- function(){
 #' @examples
 update_cmt <- function() {
   if (Sys.getenv("R_CMT_HOME")=="")  set_cmt_sys()
- # system(paste0(  Sys.getenv("R_CMT_HOME"), "ndk/scripts/update_cmt.sh") )
-  sh.com <- paste("bash/update_cmt.bash "  , Sys.getenv("R_CMT_HOME"))
-  system2(system.file("bash/update_cmt.bash", package='cmt'), args=Sys.getenv("R_CMT_HOME"))
+  # system(paste0(  Sys.getenv("R_CMT_HOME"), "ndk/scripts/update_cmt.sh") )
+  # sh.com <- paste("bash/update_cmt.bash "  , Sys.getenv("R_CMT_HOME"))
+  system2(system.file(file.path("bash","update_cmt.bash", fsep = .Platform$file.sep), package='cmt'),
+            args=Sys.getenv("R_CMT_HOME"))
  # system.file('scripts/peak_mem.sh', package='clustertools')
   ndk2fwf()
 }
@@ -68,7 +72,7 @@ cmt2rds <- function() {
  # system(paste0(Sys.getenv("R_CMT_HOME"), "/ndk/scripts/ndk2fwf.sh"))
   #cpos <- readr::fwf_empty("MLI  1976/01/01_01:29:39.6 -28.61 -177.64 159.0 6.2 0.0 KERMADEC_ISLANDS_REGION_ M010176A         B: 10  100 100 S: 10  100 100 M: 12  130 135 CMT: 1 BOXHD:  9.4 CENTROID:     13.8 0.2 -29.25 0.02 -176.96 0.01  47.8  0.6 FREE O-00000000000000 26 17.680 0.090 10.090 0.060 -7.770 0.070 11.390 0.160 14.520 0.160 -3.260 0.060 V10  18.940 75 283 111.260 12 119 -10.190 15 110  19.560 202 30  193 118 60  188 +")
 
-  cpos <- readr::fwf_empty(system.file( "bash/cmt_template.fwf.R", package='cmt') )
+  cpos <- readr::fwf_empty(system.file( file.path("bash","cmt_template.fwf.R", fsep = .Platform$file.sep), package='cmt') )
 
 
   cpos$col_names <-
