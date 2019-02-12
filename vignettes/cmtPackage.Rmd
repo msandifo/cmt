@@ -1,0 +1,37 @@
+---
+title: "CMT package notes"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{cmtPackage.Rmd}
+  \usepackage[utf8]{inputenc}
+---
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## CMT package
+
+The cmt package  assembles, updates and process gCMT ndk files for analysis in R
+
+### package organsiation
+
+ndk  files are downloaded  stored in package directory data as RDS fiels.
+
+to up date the fiels we neemd to creatae a local directory and dowlonad the .ndk files from gcMT.
+
+the  function set_cmt_sys is used to set and or retrieve the envuronment variable that holds the directory which si stored in the file "bash/.cmtdir" in the CMT package 
+```{r cars}
+cmt::set_cmt_sys()
+```
+
+<!-- ## Including Plots -->
+
+<!-- You can also embed plots, for example: -->
+
+<!-- ```{r pressure, echo=FALSE} -->
+<!-- plot(pressure) -->
+<!-- ``` -->
+
+<!-- Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot. -->

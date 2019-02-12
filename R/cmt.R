@@ -309,7 +309,7 @@ minmax <- function(data,  tight=0){
 #' @export
 #'
 #' @examples
-plot_cmt <- function(data, tight=NA, projection="mollweide") {
+plot_cmt <- function(data, tight=NA ) {
   library(ggplot2)
   world <- map_data("world")
 
@@ -325,7 +325,8 @@ plot_cmt <- function(data, tight=NA, projection="mollweide") {
     #geom_path(data=world, aes( group = group), fill="grey")+
      geom_point(aes( size=Mw,  col=depth))+
     scale_colour_gradientn(colours=plunge.cols )+
-    coord_map(projection=projection, xlim=long.range, ylim=lat.range)
+    theme_minimal()#+
+    #coord_map(projection=projection, xlim=long.range, ylim=lat.range)
   
 }
 
