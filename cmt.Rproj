@@ -11,7 +11,16 @@ Encoding: UTF-8
 
 RnwWeave: knitr
 LaTeX: pdfLaTeX
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 7363a76a078ee0c9dadbb4dd5b3b3a200f1ae74b
 
 BuildType: Package
 PackageUseDevtools: Yes
 PackageInstallArgs: --no-multiarch --with-keep.source
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> refs/remotes/origin/master
+>>>>>>> 7363a76a078ee0c9dadbb4dd5b3b3a200f1ae74b
