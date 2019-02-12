@@ -4,7 +4,7 @@
 \alias{set_cmt_sys}
 \title{set_cmt_sys sets a lcoal directory for the}
 \usage{
-set_cmt_sys(dir = "~/data/global/quakes/cmt17/")
+set_cmt_sys(dir = NA)
 }
 \arguments{
 \item{dir}{defaults to "~/data/global/quakes/cmt17/" recursively genartes this if not in existence}

@@ -6,7 +6,7 @@ plunge.cols <-   RColorBrewer::brewer.pal(11,"Spectral")[c(1,2,4,5, 9:11)]
 world <- map_data("world")
 tight=2
 projection="mollweide"
-
+#projection="stereographic"
 
 filter_long(c(143,155)) %>%
   filter_lat(c(-15,5),.)   %>%
