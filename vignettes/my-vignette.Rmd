@@ -1,10 +1,12 @@
 ---
 title: "CMT package notes"
+author: "Mike Sandiford"
+date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{CMT package notes}
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+  \VignetteEncoding{UTF-8}
 ---
 ```{r setup, include=FALSE}
 
