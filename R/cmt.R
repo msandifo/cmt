@@ -331,54 +331,61 @@ plot_cmt <- function(data, tight=NA ) {
 }
 
 
-#' @param norm
-#' @param simplify
+ 
+#' return trend lines for cmt P, T or B axes 
+#'
+#' @param cmt 
+#' @param scale 
+#' @param psp 
+#' @param segment 
+#' @param norm 
+#' @param simplify 
+#' @param ax (default="P")
 #'
 #' @return
 #' @export
 #'
 #' @examples
-#'
-vec_lines<- function(wsm,   scale=1, psp=F, segment=F, norm=T, simplify=T, ax="P"){
+vec_lines<- function(cmt,   scale=1, psp=F, segment=F, norm=T, simplify=T, ax="P"){
 
-  names(wsm) <- stringr::str_to_lower(names(wsm))
-  print(names(wsm))
-  print(wsm$x)
+  names(cmt) <- stringr::str_to_lower(names(cmt))
+  print(names(cmt))
+  print(cmt$x)
   #returns stress trajectories
   #scale=1
-  if (ax=="B") {wsm$marks$dip=wsm$marks$bp
-  wsm$marks$azi=wsm$marks$ba}
-   else if (ax=="P")  { wsm$marks$dip=wsm$marks$tp
-   wsm$marks$azi=wsm$marks$ta} else
-   {wsm$marks$dip=wsm$marks$pp
-   wsm$marks$azi=wsm$marks$pa}
+  if (ax=="B") {cmt$marks$dip=cmt$marks$bp
+  cmt$marks$azi=cmt$marks$ba}
+   else if (ax=="P")  { cmt$marks$dip=cmt$marks$tp
+   cmt$marks$azi=cmt$marks$ta} else
+   {cmt$marks$dip=cmt$marks$pp
+   cmt$marks$azi=cmt$marks$pa}
 
- # if (is.null( wsm$marks$dip))   wsm$marks$dip <-0
-  if (norm) scale<- cos(wsm$marks$dip*pi/180)*scale #norm means scale according dip
-  sinazi<- sin(wsm$marks$azi*pi/180)*scale
-  cosazi<- cos(wsm$marks$azi*pi/180)*scale
-  x<- matrix(ncol=length(wsm$y),nrow=3)
-  y<- matrix(ncol=length(wsm$y),nrow=3)
-  x[1,]<-wsm$x+ sinazi
-  x[2,]<-wsm$x- sinazi
-  y[1,]<-wsm$y+ cosazi
-  y[2,]<-wsm$y- cosazi
+ # if (is.null( cmt$marks$dip))   cmt$marks$dip <-0
+  if (norm) scale<- cos(cmt$marks$dip*pi/180)*scale #norm means scale according dip
+  sinazi<- sin(cmt$marks$azi*pi/180)*scale
+  cosazi<- cos(cmt$marks$azi*pi/180)*scale
+  x<- matrix(ncol=length(cmt$y),nrow=3)
+  y<- matrix(ncol=length(cmt$y),nrow=3)
+  x[1,]<-cmt$x+ sinazi
+  x[2,]<-cmt$x- sinazi
+  y[1,]<-cmt$y+ cosazi
+  y[2,]<-cmt$y- cosazi
   #
     # print(x)
     # print(y)
   #
-  # cols<- vector("character",length(wsm$regime))
-  # cols[wsm$regime=="NF"] <-"Red"
-  # cols[wsm$regime=="NS"] <-"Red"
-  # cols[wsm$regime=="SS"] <-"Green"
-  # cols[wsm$regime=="TF"] <-"Blue"
-  # cols[wsm$regime=="TS"] <-"Blue"
-  # cols[wsm$regime=="U"] <-"Black"
+  # cols<- vector("character",length(cmt$regime))
+  # cols[cmt$regime=="NF"] <-"Red"
+  # cols[cmt$regime=="NS"] <-"Red"
+  # cols[cmt$regime=="SS"] <-"Green"
+  # cols[cmt$regime=="TF"] <-"Blue"
+  # cols[cmt$regime=="TS"] <-"Blue"
+  # cols[cmt$regime=="U"] <-"Black"
   # cols<- rep(cols, each=3)
   if (simplify){
-    wsm$marks$regime[wsm$marks$regime=="TS"]<-"SS"
-    # wsm$marks$regime[wsm$marks$regime=="U"]<-"NF"
-    wsm$marks$regime[wsm$marks$regime=="NS"]<-"SS"
+    cmt$marks$regime[cmt$marks$regime=="TS"]<-"SS"
+    # cmt$marks$regime[cmt$marks$regime=="U"]<-"NF"
+    cmt$marks$regime[cmt$marks$regime=="NS"]<-"SS"
   }
   if (psp==T & segment==F ){
     xrange<- c(min(x[2,])-scale, max(x[1,])+scale)
@@ -386,13 +393,13 @@ vec_lines<- function(wsm,   scale=1, psp=F, segment=F, norm=T, simplify=T, ax="P
     print(xrange)
     print(yrange)
 
-    return(psp(x[1,], y[1,], x[2,], y[2,], owin(xrange,yrange), marks =wsm$marks$regime))
+    return(psp(x[1,], y[1,], x[2,], y[2,], owin(xrange,yrange), marks =cmt$marks$regime))
   } else if (segment==T)  {
 
-    data.frame(x=wsm$x, y=wsm$y,xstart=x[2,], xend=x[1,], ystart=y[2,], yend=y[1,], regime=wsm$marks$regime, plunge=wsm$marks$dip )
+    data.frame(x=cmt$x, y=cmt$y,xstart=x[2,], xend=x[1,], ystart=y[2,], yend=y[1,], regime=cmt$marks$regime, plunge=cmt$marks$dip )
   } else
   {
-    return(data.frame(x=as.vector(x), y=as.vector(y), regime=rep(wsm$marks$regime, each=3)))
+    return(data.frame(x=as.vector(x), y=as.vector(y), regime=rep(cmt$marks$regime, each=3)))
   }
 }
 

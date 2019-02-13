@@ -1,11 +1,31 @@
 #library(slab)
 
+#' Title
+#'
+#' @param ras 
+#'
+#' @return
+#' @export
+#'
+#' @examples
 is.ras <- function(ras) {
   class(ras)[1] %in% c("Raster", "RasterLayer", "RasterBrick", "RasterStack")
 
 }
 
 
+#' Title
+#'
+#' @param cmt 
+#' @param limsx 
+#' @param limsy 
+#' @param ppp 
+#' @param simplify 
+#'
+#' @return
+#' @export
+#'
+#' @examples
 cmt_to_ppp <-
   function(cmt=NA,
            limsx = c(-180, 180),
