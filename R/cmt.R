@@ -14,11 +14,10 @@ set_cmt_sys <- function(dir=NA) {
   
  if (!is.na(dir)) {
    if( stringr::str_sub(dir, -1) !="/") dir= paste0(dir, "/")
-   writeChar( dir, con , 
-                             nchars= stringr::str_length(dir), eos=NULL)
+   writeChar( dir, con , nchars= stringr::str_length(dir), eos=NULL)
  }
   #readChar("./inst/bash/.cmtdir", n=300)
-  dir <- readChar(con, n=300)
+  dir <- readChar(con, n=300 )
   dir.ndk <- paste0(dir, "ndk")
   if (!dir.exists(dir.ndk)) dir.create(dir.ndk, recursive=T)
   message ("setting R_CMT_HOME to: ", dir)
