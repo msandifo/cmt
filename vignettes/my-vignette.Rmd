@@ -17,16 +17,36 @@ knitr::opts_chunk$set(echo = TRUE)
 
 The cmt package  assembles, updates and process gCMT ndk files for analysis in R
 
-### package organsiation
+### Package organisation
 
-ndk  files are downloaded  stored in package directory data as RDS fiels.
+`ndk` files are downloaded  stored in package directory data as RDS files in the paackage `data` directroy.
 
-to up date the fiels we neemd to creatae a local directory and dowlonad the .ndk files from gcMT.
+In order update the files a disk local directory need to identified (and possibly created) for download the `.ndk` files from gcMT.
 
-the  function set_cmt_sys is used to set and or retrieve the envuronment variable that holds the directory which si stored in the file "bash/.cmtdir" in the CMT package 
-```{r cars}
+The  function `cmt::set_cmt_sys` is used to set and or retrieve the environment variable that holds the directory which is stored in the file `bash/.cmtdir` in the cmt package.
+
+
+```{r environment_set}
 cmt::set_cmt_sys()
 ```
+
+note that set's the `R_CMT_HOME` evironrment variable 
+```{r environment_get}
+Sys.getenv("R_CMT_HOME")
+```
+
+### updating the RDS files
+
+`cmt::update_cmt()` is called to update the  ndk files to the diretcory specified by `Sys.getenv("R_CMT_HOME")` 
+```{r update_cmt, eval=FALSE}
+cmt::update_cmt()
+```
+
+this also merges the ndk files and converts them to a `.fwf` format wiuth 1 recor on each line (ndk fiuels have 1 reecord spread across five lines). the rsulatnt fiels are 
+
+`cmt::cmt2rds()` converts the `.fwf` files to `.RDS`  and isntall them in the cmt package data directopry ready for access.
+
+
 
 <!-- ## Including Plots -->
 

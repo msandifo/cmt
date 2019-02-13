@@ -24,6 +24,7 @@ set_cmt_sys <- function(dir=NA) {
   message ("setting R_CMT_HOME to: ", dir)
   Sys.setenv(R_CMT_HOME = dir )  
   close(con)
+  return(Sys.getenv("R_CMT_HOME"))
 }
 
 
