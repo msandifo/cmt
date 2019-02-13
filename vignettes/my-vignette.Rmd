@@ -17,6 +17,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 The cmt package  assembles, updates and process gCMT ndk files for analysis in R
 
+### Installation
+
+`remotes::install_github(repo="msandifo/cmt", build = TRUE, build_opts = c("--no-resave-data", "--no-manual"))`
+
 ### Package organisation
 
 `ndk` files are downloaded  stored in package directory data as RDS files in the paackage `data` directroy.
@@ -37,12 +41,15 @@ Sys.getenv("R_CMT_HOME")
 
 ### updating the RDS files
 
+Nb these filess use bash scripts that eequire installation `bash` and `wget` for example 
+`brew install bash` and `brew install wget`
+
 `cmt::update_cmt()` is called to update the  ndk files to the diretcory specified by `Sys.getenv("R_CMT_HOME")` 
 ```{r update_cmt, eval=FALSE}
 cmt::update_cmt()
 ```
 
-this also merges the ndk files and converts them to a `.fwf` format wiuth 1 recor on each line (ndk fiuels have 1 reecord spread across five lines). the rsulatnt fiels are 
+this 1) merges the ndk files and 2) converts them to a `.fwf` format wiuth 1 record on each line (ndk fiuels have 1 record spread across five lines). the rsulatnt fiels are 
 
 `cmt::cmt2rds()` converts the `.fwf` files to `.RDS`  and isntall them in the cmt package data directopry ready for access.
 
