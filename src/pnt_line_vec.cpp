@@ -1,6 +1,14 @@
 #include "Rcpp.h"
 using namespace Rcpp;
 
+//'  projection of points onto line
+//' 
+//' This function returns projection point
+//' @param p0 A nuemric matrix (n*2) defining points in (long lat)  format to be projected onto line defined by l0, l1 
+//' @param l0 A numeric vector
+//' @param l1 A numeric vector
+//' @param profiel A integer identfier for the profile
+//' @export
 // [[Rcpp::export]]
 NumericMatrix
 
@@ -9,7 +17,7 @@ pnt_line_vec(const NumericMatrix& p0,
              const NumericVector& l1,
              const int& profile) {
 
-  /*    input p0 matrix (n*2) defning points in (long lat)  format to be projected onto line defined by l0, l1  */
+  /*    input p0 matrix (n*2) defining points in (long lat)  format to be projected onto line defined by l0, l1  */
     /*    return  four column matrix, projected lon, projected lat, distance from line, whethr projected coords are inside[1] or outside [0] line   */
 
     int nrow = p0.nrow();   /* ncol = p0.ncol(); */

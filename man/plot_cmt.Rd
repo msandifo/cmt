@@ -13,6 +13,9 @@ plot_cmt(data, tight = NA)
 
 \item{projection}{}
 }
+\value{
+
+}
 \description{
 default plot
 }

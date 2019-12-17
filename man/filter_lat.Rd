@@ -13,6 +13,9 @@ filter_lat(f = c(-25, 10), data = NA, quick = F)
 
 \item{quick}{}
 }
+\value{
+
+}
 \description{
 filter by lat range
 }

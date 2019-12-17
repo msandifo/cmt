@@ -15,6 +15,8 @@ fi
 
 # 2018 monthly files
 wget –q -r -np -nH --cut-dirs=5 -R index.html* https://www.ldeo.columbia.edu/~gcmt/projects/CMT/catalog/NEW_MONTHLY/2018/
+wget –q -r -np -nH --cut-dirs=5 -R index.html* https://www.ldeo.columbia.edu/~gcmt/projects/CMT/catalog/NEW_MONTHLY/2019/
+
 
 rm qcmt.ndk
 wget –q  https://www.ldeo.columbia.edu/~gcmt/projects/CMT/catalog/NEW_QUICK/qcmt.ndk

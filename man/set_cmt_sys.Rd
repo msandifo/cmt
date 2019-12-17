@@ -9,6 +9,9 @@ set_cmt_sys(dir = NA)
 \arguments{
 \item{dir}{defaults to "~/data/global/quakes/cmt17/" recursively genartes this if not in existence}
 }
+\value{
+
+}
 \description{
 set_cmt_sys sets a lcoal directory for the
 }

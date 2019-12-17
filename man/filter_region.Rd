@@ -13,6 +13,9 @@ filter_region(data = NA, f = "TIMOR|BANDA|INDONE", quick = F)
 
 \item{quick}{}
 }
+\value{
+
+}
 \description{
 filter by geographic region name in regex
 }

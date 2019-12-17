@@ -41,7 +41,17 @@ ggplot(dat, aes(long, lat)) +
     # geom_segment(  aes(x=x,xend=xend ,y=y,yend=yend, colour=depth), lwd=.3 ,
     #            lineend="round" ,arrow = arrow(length = unit(0.01, "npc")))
 
+filter_long(c(143,145)) %>%
+  filter_lat(c(-15,-5),.)   %>%
+  filter_depth(c(200, 750),.)  
 
+
+
+get_poly(long= 150, lat=-4, angle=0, length=5) ->pol1
+
+data %>% cmt_to_ppp() -> dat.ppp
+
+plot(dat.ppp, use.marks=FALSE)
 ggsave("example/newbrit.pdf", width=15, height=9)
 
 tight=4
@@ -98,12 +108,13 @@ tight=4
 filter_long(c(123,147)) %>%
   filter_lat(c(25,50),.)   %>%
   filter_depth(c(0, 76),.) ->
-  data;
+  data0;
 
-data %>% cmt_to_ppp() %>%
+data0 %>%  
+  cmt_to_ppp() %>%
   vec_lines(  scale=1.,  segment=T, norm=T, ax="P")  ->
   dat.ll
-dat<- cbind(data, dat.ll)
+dat<- cbind(data0, dat.ll)
 ldat<-length(dat$lat);
 long.range=minmax(dat$long,  -tight)
 lat.range=minmax(dat$lat, -tight)

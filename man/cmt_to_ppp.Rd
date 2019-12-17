@@ -4,8 +4,13 @@
 \alias{cmt_to_ppp}
 \title{Title}
 \usage{
-cmt_to_ppp(cmt = NA, limsx = c(-180, 180), limsy = c(-90, 90),
-  ppp = T, simplify = F)
+cmt_to_ppp(
+  cmt = NA,
+  limsx = c(-180, 180),
+  limsy = c(-90, 90),
+  ppp = T,
+  simplify = F
+)
 }
 \arguments{
 \item{cmt}{}
@@ -17,6 +22,9 @@ cmt_to_ppp(cmt = NA, limsx = c(-180, 180), limsy = c(-90, 90),
 \item{ppp}{}
 
 \item{simplify}{}
+}
+\value{
+
 }
 \description{
 Title

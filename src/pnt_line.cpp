@@ -1,10 +1,18 @@
 #include "Rcpp.h"
 using namespace Rcpp;
 
-// [[Rcpp::export]]
-NumericVector
+ 
 
-pnt_line(const NumericVector& p0,
+
+//'  projection of point onto line
+//' 
+//' This function returns projection point
+//' @param p0 A numeric (length 2)  vector of the point ( long lat)  to projected onto the line defined by l0, l1 
+//' @param l0 A numeric (length 2) vector of the point (long lat) defining start of projection line
+//' @param l1 A numeric (length 2) vector of the point (long lat) defining end of projection line
+//' @export A numwric (length 2) vector ofthe pojected position of the p0 onto line l0-l1 
+// [[Rcpp::export]]
+NumericVector pnt_line(const NumericVector& p0,
          const NumericVector& l0,
          const NumericVector& l1) {
 

@@ -13,6 +13,9 @@ filter_long(f = c(100, 160), data = NA, quick = F)
 
 \item{quick}{}
 }
+\value{
+
+}
 \description{
 filter by long range
 }

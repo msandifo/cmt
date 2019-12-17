@@ -6,6 +6,9 @@
 \usage{
 cmt2rds()
 }
+\value{
+
+}
 \description{
 builds  the cmt tibble
 }

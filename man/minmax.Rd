@@ -11,6 +11,9 @@ minmax(data, tight = 0)
 
 \item{tight}{(default=0)   factor in percentage terms to expand range}
 }
+\value{
+
+}
 \description{
 returns min and max of nuemric vector expanded by amount
 }

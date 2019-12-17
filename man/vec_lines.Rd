@@ -4,8 +4,15 @@
 \alias{vec_lines}
 \title{return trend lines for cmt P, T or B axes}
 \usage{
-vec_lines(cmt, scale = 1, psp = F, segment = F, norm = T,
-  simplify = T, ax = "P")
+vec_lines(
+  cmt,
+  scale = 1,
+  psp = F,
+  segment = F,
+  norm = T,
+  simplify = T,
+  ax = "P"
+)
 }
 \arguments{
 \item{cmt}{}
@@ -21,6 +28,9 @@ vec_lines(cmt, scale = 1, psp = F, segment = F, norm = T,
 \item{simplify}{}
 
 \item{ax}{(default="P")}
+}
+\value{
+
 }
 \description{
 return trend lines for cmt P, T or B axes

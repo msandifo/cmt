@@ -6,6 +6,9 @@
 \usage{
 update_cmt()
 }
+\value{
+
+}
 \description{
 updates the R_CMT_HOME with latest files
 }

@@ -16,7 +16,7 @@
 # f90="http://www.isc.ac.uk/cgi-bin/web-db-v4?request=COMPREHENSIVE&out_format=FMCSV&bot_lat=&top_lat=&left_lon=&right_lon=&ctr_lat=&ctr_lon=&radius=&max_dist_units=deg&searchshape=GLOBAL&srn=&grn=&start_year=1990&start_month=1&start_day=01&start_time=00%3A00%3A00&end_year=1999&end_month=12&end_day=01&end_time=00%3A00%3A00&min_dep=&max_dep=&min_mag=&max_mag=&req_mag_type=&req_mag_agcy=&req_fm_agcy=Any&include_links=on"
 # download.file(f90, "~/data/global/quakes/isc-fms/f9099.csv")
 #
-isc_fms <- function(download=F, update=T) {
+isc_fms <- function(download=F, update=T, start=NULL) {
 
 if (download) for ( i in 1964:lubridate::year(Sys.Date())){
 
@@ -27,7 +27,8 @@ if (download) for ( i in 1964:lubridate::year(Sys.Date())){
 
 }
 
-  if (update) for ( i in  lubridate::year(Sys.Date())){
+  if (is.null(start)) start= lubridate::year(Sys.Date())
+  if (update) for ( i in  start:lubridate::year(Sys.Date())){
 
     f.name= paste0("~/data/global/quakes/isc-fms/fms",i,".csv" )
     f.url=paste0("http://www.isc.ac.uk/cgi-bin/web-db-v4?request=COMPREHENSIVE&out_format=FMCSV&bot_lat=&top_lat=&left_lon=&right_lon=&ctr_lat=&ctr_lon=&radius=&max_dist_units=deg&searchshape=GLOBAL&srn=&grn=&start_year=",i,"&start_month=1&start_day=01&start_time=00%3A00%3A00&end_year=",i,"&end_month=12&end_day=01&end_time=00%3A00%3A00&min_dep=&max_dep=&min_mag=&max_mag=&req_mag_type=&req_mag_agcy=&req_fm_agcy=Any&include_links=on")
